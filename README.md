@@ -23,13 +23,13 @@ created with owner-only permissions where the platform supports them.
 ### macOS, Ubuntu, Arch, and other Linux distributions
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ishmam-iqbal-sazim/harness-chat-exporter/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Md-Ishmam-Iqbal/harness-chat-exporter/main/install.sh | sh
 ```
 
 ### Windows PowerShell
 
 ```powershell
-irm https://raw.githubusercontent.com/ishmam-iqbal-sazim/harness-chat-exporter/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Md-Ishmam-Iqbal/harness-chat-exporter/main/install.ps1 | iex
 ```
 
 Then run:
@@ -52,7 +52,7 @@ needed.
 Alternative installation with Go:
 
 ```bash
-go install github.com/ishmam-iqbal-sazim/harness-chat-exporter/cmd/hce@latest
+go install github.com/Md-Ishmam-Iqbal/harness-chat-exporter/cmd/hce@latest
 ```
 
 Go 1.25 or newer is required only when installing or building from source. To

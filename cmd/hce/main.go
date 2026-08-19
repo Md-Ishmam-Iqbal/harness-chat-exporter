@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/app"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/app"
 )
 
 var version = "dev"

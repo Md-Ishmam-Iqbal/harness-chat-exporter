@@ -8,7 +8,7 @@ import (
 	"io"
 	"strings"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
 )
 
 type RecordStats struct {
@@ -169,21 +169,6 @@ func normalizedID(value, prefix string) bool {
 func knownHarness(value string) bool {
 	switch value {
 	case "claude", "codex", "opencode", "pi":
-		return true
-	default:
-		return false
-	}
-}
-
-func knownEventType(value domain.EventType) bool {
-	switch value {
-	case domain.EventUserMessage, domain.EventAssistantMessage, domain.EventSystemMessage,
-		domain.EventDeveloperMessage, domain.EventToolCall, domain.EventToolResult,
-		domain.EventCommand, domain.EventCommandResult, domain.EventFileRead,
-		domain.EventFileWrite, domain.EventFileChange, domain.EventApprovalRequest,
-		domain.EventApprovalResponse, domain.EventModelChange, domain.EventCompaction,
-		domain.EventBranch, domain.EventSubagentStart, domain.EventSubagentEnd,
-		domain.EventError, domain.EventMetadata, domain.EventUnknown:
 		return true
 	default:
 		return false

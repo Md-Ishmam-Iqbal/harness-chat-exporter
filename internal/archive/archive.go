@@ -16,9 +16,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/render"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/validation"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/render"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/validation"
 )
 
 const DefaultCombinedMarkdownLimit int64 = 25 << 20

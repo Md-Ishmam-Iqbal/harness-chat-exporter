@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
-$Repository = "ishmam-iqbal-sazim/harness-chat-exporter"
+$Repository = "Md-Ishmam-Iqbal/harness-chat-exporter"
 $ReleaseBase = if ($env:HCE_RELEASE_BASE) { $env:HCE_RELEASE_BASE } else { "https://github.com/$Repository/releases/latest/download" }
 $Architecture = if ($env:PROCESSOR_ARCHITEW6432) { $env:PROCESSOR_ARCHITEW6432 } else { $env:PROCESSOR_ARCHITECTURE }
 $Architecture = $Architecture.ToLowerInvariant()

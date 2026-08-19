@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/limits"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/limits"
 )
 
 type SessionOptions struct {

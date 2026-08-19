@@ -13,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/validation"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/validation"
 )
 
 func TestBuildProducesCompleteDeterministicVerifiedArchive(t *testing.T) {

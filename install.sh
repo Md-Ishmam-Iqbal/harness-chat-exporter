@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-repository="ishmam-iqbal-sazim/harness-chat-exporter"
+repository="Md-Ishmam-Iqbal/harness-chat-exporter"
 release_base="${HCE_RELEASE_BASE:-https://github.com/${repository}/releases/latest/download}"
 
 fail() {

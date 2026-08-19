@@ -7,11 +7,10 @@ import (
 	"io"
 	"path"
 	"strings"
-	"time"
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
 )
 
 type EventStream func(context.Context, func(domain.EventRecord) error) error
@@ -146,11 +145,4 @@ func escapeInline(value string) string {
 
 func escapeCode(value string) string {
 	return strings.ReplaceAll(html.EscapeString(value), "`", "&#96;")
-}
-
-func formatTime(value *time.Time) string {
-	if value == nil {
-		return "unknown"
-	}
-	return value.UTC().Format(time.RFC3339Nano)
 }

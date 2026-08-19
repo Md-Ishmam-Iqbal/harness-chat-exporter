@@ -12,8 +12,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/render"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/render"
 )
 
 var requiredEntries = []string{

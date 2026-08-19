@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
 )
 
 func metadataEvent(id, nativeType string, native json.RawMessage, timestamp *time.Time, index int64) domain.NativeEvent {

@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
 )
 
 type SessionLink struct {

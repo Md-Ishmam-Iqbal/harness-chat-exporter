@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/ishmam-iqbal-sazim/harness-chat-exporter/schemas/event.schema.json",
+  "$id": "https://github.com/Md-Ishmam-Iqbal/harness-chat-exporter/schemas/event.schema.json",
   "title": "Harness Chat Exporter Event",
   "type": "object",
   "required": ["record_type", "schema_version", "id", "session_id", "sequence", "type", "role", "content"],

@@ -12,7 +12,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
 )
 
 const defaultRecordLimit = int64(64 << 20)

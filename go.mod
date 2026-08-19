@@ -1,6 +1,8 @@
-module github.com/ishmam-iqbal-sazim/harness-chat-exporter
+module github.com/Md-Ishmam-Iqbal/harness-chat-exporter
 
 go 1.25.0
+
+toolchain go1.26.6
 
 require github.com/ncruces/go-sqlite3 v0.35.3
 

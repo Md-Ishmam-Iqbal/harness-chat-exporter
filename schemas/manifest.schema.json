@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/ishmam-iqbal-sazim/harness-chat-exporter/schemas/manifest.schema.json",
+  "$id": "https://github.com/Md-Ishmam-Iqbal/harness-chat-exporter/schemas/manifest.schema.json",
   "title": "Harness Chat Exporter Manifest",
   "type": "object",
   "required": ["archive_format", "archive_version", "exported_at", "range", "redaction_enabled", "reasoning_policy", "files"],

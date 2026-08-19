@@ -11,16 +11,16 @@ import (
 	"sort"
 	"time"
 
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/adapters/claude"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/adapters/codex"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/adapters/opencode"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/adapters/pi"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/archive"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/config"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/domain"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/pipeline"
-	"github.com/ishmam-iqbal-sazim/harness-chat-exporter/internal/render"
-	archiveschemas "github.com/ishmam-iqbal-sazim/harness-chat-exporter/schemas"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/adapters/claude"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/adapters/codex"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/adapters/opencode"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/adapters/pi"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/archive"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/config"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/domain"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/pipeline"
+	"github.com/Md-Ishmam-Iqbal/harness-chat-exporter/internal/render"
+	archiveschemas "github.com/Md-Ishmam-Iqbal/harness-chat-exporter/schemas"
 )
 
 type registryEntry struct {
