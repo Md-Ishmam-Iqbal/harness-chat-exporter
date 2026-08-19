@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"runtime"
 	"strings"
 	"testing"
 )
@@ -62,7 +63,7 @@ func TestExportClaudeAndCodexEndToEndUsageFocused(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if info.Mode().Perm() != 0o600 {
+	if runtime.GOOS != "windows" && info.Mode().Perm() != 0o600 {
 		t.Fatalf("archive mode=%04o", info.Mode().Perm())
 	}
 	files := readZIP(t, archivePath)
@@ -216,7 +217,7 @@ func TestDirectFormatsPreviewAndCollisionSafeNames(t *testing.T) {
 		if !strings.Contains(string(content), checks.contains) || strings.Contains(string(content), checks.excludes) {
 			t.Fatalf("unexpected %s content: %s", filename, content)
 		}
-		if info, err := os.Stat(path); err != nil || info.Mode().Perm() != 0o600 {
+		if info, err := os.Stat(path); err != nil || (runtime.GOOS != "windows" && info.Mode().Perm() != 0o600) {
 			t.Fatalf("unexpected %s permissions: %v, %v", filename, info, err)
 		}
 	}

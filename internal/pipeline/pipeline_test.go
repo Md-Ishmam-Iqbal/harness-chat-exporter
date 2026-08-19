@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"os"
+	"runtime"
 	"strings"
 	"testing"
 	"time"
@@ -269,6 +271,32 @@ func TestCancellationAndWriteFailureRemoveSpool(t *testing.T) {
 	})
 }
 
+func TestReplayFailureClosesAndRemovesSpool(t *testing.T) {
+	workspace, sink, now := testSink(t, domain.ScopeTouched, 128, 1024)
+	if err := sink.Add(context.Background(), domain.NativeEvent{
+		NativeEventID: "user", Timestamp: &now, Type: domain.EventUserMessage,
+		Role: domain.RoleUser, Content: []domain.ContentBlock{{Type: "text", Text: stringPointer("hello")}},
+	}); err != nil {
+		t.Fatal(err)
+	}
+	finalized, err := sink.Finalize(context.Background(), domain.ParseResult{})
+	if err != nil {
+		t.Fatal(err)
+	}
+	spoolPath := finalized.SpoolPath()
+	if err := finalized.Replay(context.Background(), func(domain.EventRecord) error {
+		return errors.New("stop replay")
+	}); err == nil {
+		t.Fatal("expected replay failure")
+	}
+	if _, err := os.Stat(spoolPath); !os.IsNotExist(err) {
+		t.Fatalf("failed replay left its spool behind: %v", err)
+	}
+	if err := workspace.Close(); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func stringPointer(value string) *string { return &value }
 
 func testSink(t *testing.T, scope domain.SessionScope, toolLimit, recordLimit int64) (*Workspace, *SessionSink, time.Time) {
@@ -291,11 +319,18 @@ func testSink(t *testing.T, scope domain.SessionScope, toolLimit, recordLimit in
 		workspace.Close()
 		t.Fatal(err)
 	}
+	t.Cleanup(func() {
+		_ = sink.Abort()
+		_ = workspace.Close()
+	})
 	return workspace, sink, now
 }
 
 func assertMode(t *testing.T, path string, want os.FileMode) {
 	t.Helper()
+	if runtime.GOOS == "windows" {
+		return
+	}
 	info, err := os.Stat(path)
 	if err != nil {
 		t.Fatal(err)

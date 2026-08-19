@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -19,6 +20,21 @@ type fixtureData struct {
 	Sessions []map[string]any `json:"sessions"`
 	Messages []map[string]any `json:"messages"`
 	Parts    []map[string]any `json:"parts"`
+}
+
+func TestSQLiteFileURLUsesWindowsDriveAsPath(t *testing.T) {
+	u := sqliteFileURL(`C:\Users\runner admin\AppData\Local\opencode.db`)
+	query := u.Query()
+	query.Set("mode", "ro")
+	u.RawQuery = query.Encode()
+
+	parsed, err := url.Parse(u.String())
+	if err != nil {
+		t.Fatal(err)
+	}
+	if parsed.Scheme != "file" || parsed.Host != "" || parsed.Path != "/C:/Users/runner admin/AppData/Local/opencode.db" {
+		t.Fatalf("invalid Windows SQLite URI: %q (%#v)", u.String(), parsed)
+	}
 }
 
 func TestDetectAndNormalizeAllOpenCodeGenerations(t *testing.T) {

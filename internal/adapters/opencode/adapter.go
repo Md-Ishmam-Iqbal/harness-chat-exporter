@@ -281,7 +281,7 @@ func canonicalPath(path string) string {
 }
 
 func openReadOnly(path string) (*sql.DB, error) {
-	u := &url.URL{Scheme: "file", Path: path}
+	u := sqliteFileURL(path)
 	query := u.Query()
 	query.Set("mode", "ro")
 	query.Add("_pragma", "query_only(1)")
@@ -294,6 +294,18 @@ func openReadOnly(path string) (*sql.DB, error) {
 	database.SetMaxOpenConns(1)
 	database.SetMaxIdleConns(1)
 	return database, nil
+}
+
+func sqliteFileURL(path string) *url.URL {
+	normalized := filepath.ToSlash(path)
+	// filepath.ToSlash only recognizes the current platform's separator. Keep
+	// Windows paths valid when this helper is exercised by platform-neutral
+	// tests, and ensure a drive letter is parsed as a path rather than a URI
+	// authority (file:///C:/...), which would otherwise look like a port.
+	if len(path) >= 3 && path[1] == ':' && (path[2] == '\\' || path[2] == '/') {
+		normalized = "/" + strings.ReplaceAll(path, "\\", "/")
+	}
+	return &url.URL{Scheme: "file", Path: normalized}
 }
 
 func discoverLegacy(ctx context.Context, root domain.DetectedRoot, kind string, emit func(domain.SessionReference) error) error {

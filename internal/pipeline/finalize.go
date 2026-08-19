@@ -165,13 +165,19 @@ func (f *FinalizedSession) Replay(ctx context.Context, emit func(domain.EventRec
 		return errors.New("open session spool")
 	}
 	defer file.Close()
+	fail := func(err error) error {
+		// Windows cannot unlink an open file. Close the replay handle before
+		// invalidating and removing the finalized spool on every error path.
+		_ = file.Close()
+		_ = f.Close()
+		return err
+	}
 	reader := bufio.NewReader(file)
 	decoder := json.NewDecoder(reader)
 	index := 0
 	for {
 		if err := ctx.Err(); err != nil {
-			_ = f.Close()
-			return err
+			return fail(err)
 		}
 		var event domain.EventRecord
 		err := decoder.Decode(&event)
@@ -179,20 +185,17 @@ func (f *FinalizedSession) Replay(ctx context.Context, emit func(domain.EventRec
 			break
 		}
 		if err != nil || index >= len(f.selected) {
-			_ = f.Close()
-			return errors.New("decode session spool")
+			return fail(errors.New("decode session spool"))
 		}
 		if f.Included && f.selected[index] {
 			if err := emit(event); err != nil {
-				_ = f.Close()
-				return errors.New("emit normalized event")
+				return fail(errors.New("emit normalized event"))
 			}
 		}
 		index++
 	}
 	if index != len(f.selected) {
-		_ = f.Close()
-		return errors.New("incomplete session spool")
+		return fail(errors.New("incomplete session spool"))
 	}
 	return nil
 }
