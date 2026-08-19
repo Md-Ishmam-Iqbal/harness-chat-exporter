@@ -1,0 +1,1 @@
+{"id":"prt_tool_error","sessionID":"ses_parent","messageID":"msg_assistant","type":"tool","tool":"write","callID":"call_error","state":{"status":"error","input":{"filePath":"/fixture/project/error.go"},"error":"generated-tool-error"},"time":{"start":1786000005002,"end":1786000005003}}

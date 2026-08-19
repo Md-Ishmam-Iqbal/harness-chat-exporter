@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ishmam-iqbal-sazim/harness-chat-exporter/schemas/event.schema.json",
+  "title": "Harness Chat Exporter Event",
+  "type": "object",
+  "required": ["record_type", "schema_version", "id", "session_id", "sequence", "type", "role", "content"],
+  "properties": {
+    "record_type": {"const": "event"},
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "pattern": "^hh_evt_[0-9a-f]{20,64}$"},
+    "session_id": {"type": "string", "pattern": "^hh_ses_[0-9a-f]{20,64}$"},
+    "native_id": {"type": "string"},
+    "parent_id": {"type": ["string", "null"]},
+    "sequence": {"type": "integer", "minimum": 0},
+    "timestamp": {"type": ["string", "null"], "format": "date-time"},
+    "timestamp_source": {"enum": ["native", "session", "filesystem", "inferred", "unknown", ""]},
+    "timestamp_confidence": {"enum": ["exact", "high", "medium", "low", "unknown", ""]},
+    "type": {"enum": ["user_message", "assistant_message"]},
+    "role": {"type": "string"},
+    "redactions": {"type": "array", "maxItems": 0},
+    "truncations": {"type": "array"},
+    "source": {"type": "object"},
+    "native": {}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,1 @@
+{"id":"msg_assistant","sessionID":"ses_parent","role":"assistant","providerID":"fixture-provider","modelID":"fixture-model","cost":0.0125,"tokens":{"input":20,"output":30,"cache":{"read":4,"write":2}},"time":{"created":1786000002000}}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ishmam-iqbal-sazim/harness-chat-exporter/schemas/manifest.schema.json",
+  "title": "Harness Chat Exporter Manifest",
+  "type": "object",
+  "required": ["archive_format", "archive_version", "exported_at", "range", "redaction_enabled", "reasoning_policy", "files"],
+  "properties": {
+    "archive_format": {"const": "harness-chat-exporter"},
+    "archive_version": {"const": "1.0"},
+    "exported_at": {"type": "string", "format": "date-time"},
+    "range": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": {"type": "string", "format": "date-time"},
+        "to": {"type": "string", "format": "date-time"}
+      }
+    },
+    "redaction_enabled": {"const": false},
+    "reasoning_policy": {"const": "excluded"},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "size_bytes"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size_bytes": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

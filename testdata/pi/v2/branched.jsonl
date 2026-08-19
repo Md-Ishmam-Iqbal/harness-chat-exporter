@@ -1,0 +1,9 @@
+{"type":"session","version":2,"id":"pi-v2-session","timestamp":"2026-08-02T10:00:00.000Z","cwd":"/private/pi-v2-project"}
+{"type":"message","id":"v2root00","parentId":null,"timestamp":"2026-08-02T10:00:01.000Z","message":{"role":"user","content":"start v2"}}
+{"type":"message","id":"v2base00","parentId":"v2root00","timestamp":"2026-08-02T10:00:02.000Z","message":{"role":"assistant","content":[{"type":"text","text":"base response"}],"provider":"anthropic","model":"claude-sonnet"}}
+{"type":"message","id":"v2alt000","parentId":"v2base00","timestamp":"2026-08-02T10:00:03.000Z","message":{"role":"user","content":"alternate-branch-canary"}}
+{"type":"branch_summary","id":"v2sum000","parentId":"v2base00","timestamp":"2026-08-02T10:00:04.000Z","fromId":"v2alt000","summary":"alternate branch summary canary","details":{"readFiles":["/private/a"]}}
+{"type":"message","id":"v2hook00","parentId":"v2sum000","timestamp":"2026-08-02T10:00:05.000Z","message":{"role":"hookMessage","customType":"legacy-extension","content":"v2-hidden-extension-canary","display":false}}
+{"type":"message","id":"v2active","parentId":"v2hook00","timestamp":"2026-08-02T10:00:06.000Z","message":{"role":"user","content":"active-branch-canary"}}
+{"type":"label","id":"v2label0","parentId":"v2active","timestamp":"2026-08-02T10:00:07.000Z","targetId":"v2active","label":"chosen-path"}
+not valid json but must survive

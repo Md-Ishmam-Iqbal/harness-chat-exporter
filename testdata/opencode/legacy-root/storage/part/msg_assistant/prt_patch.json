@@ -1,0 +1,1 @@
+{"id":"prt_patch","sessionID":"ses_parent","messageID":"msg_assistant","type":"patch","files":["/fixture/project/main.go"],"diff":"generated-diff-canary","time":{"start":1786000006000}}

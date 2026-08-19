@@ -1,0 +1,1 @@
+{"id":"prt_tool","sessionID":"ses_parent","messageID":"msg_assistant","type":"tool","tool":"read","callID":"call_fixture","state":{"status":"completed","input":{"filePath":"/fixture/project/main.go"},"output":"tool-output-canary","metadata":{"exitCode":0}},"time":{"start":1786000004000,"end":1786000005000}}

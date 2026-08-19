@@ -1,0 +1,22 @@
+{
+  "sessions": [
+    {"id":"ses_parent","project_id":"project_fixture","parent_id":null,"slug":"fixture","directory":"/fixture/project","title":"Generated usage review","version":"1.18.0","time_created":1786000000000,"time_updated":1786000010000,"metadata":"session-disclosure-canary"},
+    {"id":"ses_child","project_id":"project_fixture","parent_id":"ses_parent","slug":"child","directory":"/fixture/project","title":"Generated child session","version":"1.18.0","time_created":1786000020000,"time_updated":1786000030000,"time_archived":1786000040000,"metadata":"child-session-canary"}
+  ],
+  "messages": [
+    {"id":"msg_user","session_id":"ses_parent","time_created":1786000001000,"time_updated":1786000001000,"data":{"role":"user"}},
+    {"id":"msg_assistant","session_id":"ses_parent","time_created":1786000002000,"time_updated":1786000009000,"data":{"role":"assistant","providerID":"fixture-provider","modelID":"fixture-model","cost":0.0125,"tokens":{"input":20,"output":30,"cache":{"read":4,"write":2}}}},
+    {"id":"msg_child","session_id":"ses_child","time_created":1786000021000,"time_updated":1786000021000,"data":{"role":"user"}}
+  ],
+  "parts": [
+    {"id":"prt_user_text","message_id":"msg_user","session_id":"ses_parent","time_created":1786000001001,"time_updated":1786000001001,"data":{"type":"text","text":"usage-study-canary"}},
+    {"id":"prt_assistant_text","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000002001,"time_updated":1786000002001,"data":{"type":"text","text":"assistant-disclosure-canary"}},
+    {"id":"prt_reasoning","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000003000,"time_updated":1786000003000,"data":{"type":"reasoning","text":"private-reasoning-canary","visibility":"internal","metadata":{"signature":"generated-signature"}}},
+    {"id":"prt_tool","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000004000,"time_updated":1786000005000,"data":{"type":"tool","tool":"read","callID":"call_fixture","state":{"status":"completed","input":{"filePath":"/fixture/project/main.go"},"output":"tool-output-canary","metadata":{"exitCode":0}}}},
+    {"id":"prt_tool_pending","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000005001,"time_updated":1786000005001,"data":{"type":"tool","tool":"search","callID":"call_pending","state":{"status":"pending","input":{"query":"generated"}}}},
+    {"id":"prt_tool_error","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000005002,"time_updated":1786000005003,"data":{"type":"tool","tool":"write","callID":"call_error","state":{"status":"error","input":{"filePath":"/fixture/project/error.go"},"error":"generated-tool-error"}}},
+    {"id":"prt_patch","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000006000,"time_updated":1786000006000,"data":{"type":"patch","files":["/fixture/project/main.go"],"diff":"generated-diff-canary"}},
+    {"id":"prt_future","message_id":"msg_assistant","session_id":"ses_parent","time_created":1786000007000,"time_updated":1786000007000,"data":{"type":"future-fixture-part","opaque":"future-part-canary"}},
+    {"id":"prt_child_text","message_id":"msg_child","session_id":"ses_child","time_created":1786000021001,"time_updated":1786000021001,"data":{"type":"text","text":"child-text-canary"}}
+  ]
+}

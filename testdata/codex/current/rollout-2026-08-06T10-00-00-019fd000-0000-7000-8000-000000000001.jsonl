@@ -1,0 +1,11 @@
+{"timestamp":"2026-08-06T10:00:00Z","type":"session_meta","payload":{"id":"019fd000-0000-7000-8000-000000000001","session_id":"019fd000-0000-7000-8000-000000000001","timestamp":"2026-08-06T10:00:00Z","cwd":"/Users/example/private-project","cli_version":"0.146.1","model_provider":"openai"}}
+{"timestamp":"2026-08-06T10:00:01Z","type":"turn_context","payload":{"turn_id":"turn-1","model":"gpt-5.6","cwd":"/Users/example/private-project"}}
+{"timestamp":"2026-08-06T10:00:02Z","type":"response_item","payload":{"type":"message","id":"msg-user","role":"user","content":[{"type":"input_text","text":"Use secret sk-test-disclosure-canary exactly as provided"}]}}
+{"timestamp":"2026-08-06T10:00:03Z","type":"response_item","payload":{"type":"message","id":"msg-assistant","role":"assistant","content":[{"type":"output_text","text":"I will inspect the tests."}]}}
+{"timestamp":"2026-08-06T10:00:04Z","type":"response_item","payload":{"type":"reasoning","id":"reason-1","summary":[{"type":"summary_text","text":"Visible reasoning summary canary"}],"encrypted_content":"encrypted-reasoning-canary"}}
+{"timestamp":"2026-08-06T10:00:05Z","type":"response_item","payload":{"type":"custom_tool_call","id":"tool-1","call_id":"call-1","name":"exec_command","input":{"cmd":"go test ./...","cwd":"/Users/example/private-project"},"status":"requested"}}
+{"timestamp":"2026-08-06T10:00:06Z","type":"response_item","payload":{"type":"custom_tool_call_output","id":"tool-result-1","call_id":"call-1","output":"PASS\n","status":"completed"}}
+{"timestamp":"2026-08-06T10:00:07Z","type":"event_msg","payload":{"type":"patch_apply_end","call_id":"patch-1","changes":[{"path":"main.go","kind":"update","diff":"+package main"}],"status":"completed","success":true}}
+{"timestamp":"2026-08-06T10:00:08Z","type":"event_msg","payload":{"type":"user_message","message":"lifecycle duplicate"}}
+{"timestamp":"2026-08-06T10:00:09Z","type":"future_record","payload":{"future":true,"credential":"future-secret-canary"}}
+{"timestamp":"broken"

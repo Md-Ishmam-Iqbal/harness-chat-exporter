@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ishmam-iqbal-sazim/harness-chat-exporter/schemas/session.schema.json",
+  "title": "Harness Chat Exporter Session",
+  "type": "object",
+  "required": ["record_type", "schema_version", "id", "harness", "counts", "integrity"],
+  "properties": {
+    "record_type": {"const": "session"},
+    "schema_version": {"const": "1.0"},
+    "id": {"type": "string", "pattern": "^hh_ses_[0-9a-f]{20,64}$"},
+    "harness": {"enum": ["claude", "codex", "opencode", "pi"]},
+    "harness_version": {"type": "string"},
+    "native_session_id": {"type": "string"},
+    "title": {"type": "string"},
+    "summary": {"type": ["string", "null"]},
+    "started_at": {"type": ["string", "null"], "format": "date-time"},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"},
+    "matched_range": {"type": "boolean"},
+    "match_reason": {"type": "string"},
+    "project": {"type": "object"},
+    "model_usage": {"type": "array"},
+    "source": {"type": "object"},
+    "structure": {"type": "object"},
+    "counts": {"type": "object"},
+    "integrity": {"type": "object"}
+  },
+  "additionalProperties": true
+}

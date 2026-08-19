@@ -1,0 +1,1 @@
+{"id":"prt_tool_pending","sessionID":"ses_parent","messageID":"msg_assistant","type":"tool","tool":"search","callID":"call_pending","state":{"status":"pending","input":{"query":"generated"}},"time":{"start":1786000005001}}

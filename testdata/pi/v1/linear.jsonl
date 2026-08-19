@@ -1,0 +1,6 @@
+{"type":"session","version":1,"id":"pi-v1-session","timestamp":"2026-08-01T10:00:00.000Z","cwd":"/private/pi-v1-project"}
+{"type":"message","timestamp":"2026-08-01T10:00:01.000Z","message":{"role":"user","content":"v1-user-canary","timestamp":1785588001000}}
+{"type":"message","timestamp":"2026-08-01T10:00:02.000Z","message":{"role":"assistant","provider":"anthropic","model":"claude-sonnet","content":[{"type":"thinking","thinking":"v1-reasoning-canary"},{"type":"text","text":"I will inspect it."},{"type":"toolCall","id":"v1-call","name":"read","arguments":{"path":"/private/pi-v1-project/main.go"}}],"usage":{"input":10,"output":20}}}
+{"type":"message","timestamp":"2026-08-01T10:00:03.000Z","message":{"role":"toolResult","toolCallId":"v1-call","toolName":"read","content":[{"type":"text","text":"v1-tool-result-canary"}],"isError":false}}
+{"type":"model_change","timestamp":"2026-08-01T10:00:04.000Z","provider":"openai","modelId":"gpt-5"}
+{"type":"thinking_level_change","timestamp":"2026-08-01T10:00:05.000Z","thinkingLevel":"high"}
