@@ -22,18 +22,17 @@ type fixtureData struct {
 	Parts    []map[string]any `json:"parts"`
 }
 
-func TestSQLiteFileURLUsesWindowsDriveAsPath(t *testing.T) {
-	u := sqliteFileURL(`C:\Users\runner admin\AppData\Local\opencode.db`)
-	query := u.Query()
-	query.Set("mode", "ro")
-	u.RawQuery = query.Encode()
-
-	parsed, err := url.Parse(u.String())
+func TestSQLiteReadOnlyDSNUsesWindowsDrivePathExpectedByDriver(t *testing.T) {
+	dsn := sqliteReadOnlyDSN(`C:\Users\runner admin\AppData\Local\opencode.db`)
+	parsed, err := url.Parse(dsn)
 	if err != nil {
 		t.Fatal(err)
 	}
-	if parsed.Scheme != "file" || parsed.Host != "" || parsed.Path != "/C:/Users/runner admin/AppData/Local/opencode.db" {
-		t.Fatalf("invalid Windows SQLite URI: %q (%#v)", u.String(), parsed)
+	if parsed.Scheme != "file" || parsed.Host != "" || parsed.Opaque != "C:/Users/runner%20admin/AppData/Local/opencode.db" {
+		t.Fatalf("invalid Windows SQLite DSN: %q (%#v)", dsn, parsed)
+	}
+	if !strings.HasPrefix(dsn, "file:C:/Users/runner%20admin/AppData/Local/opencode.db?") {
+		t.Fatalf("Windows drive path gained a leading slash: %q", dsn)
 	}
 }
 

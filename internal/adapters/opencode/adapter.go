@@ -281,13 +281,7 @@ func canonicalPath(path string) string {
 }
 
 func openReadOnly(path string) (*sql.DB, error) {
-	u := sqliteFileURL(path)
-	query := u.Query()
-	query.Set("mode", "ro")
-	query.Add("_pragma", "query_only(1)")
-	query.Add("_pragma", "busy_timeout(5000)")
-	u.RawQuery = query.Encode()
-	database, err := sql.Open("sqlite3", u.String())
+	database, err := sql.Open("sqlite3", sqliteReadOnlyDSN(path))
 	if err != nil {
 		return nil, err
 	}
@@ -296,16 +290,22 @@ func openReadOnly(path string) (*sql.DB, error) {
 	return database, nil
 }
 
-func sqliteFileURL(path string) *url.URL {
+func sqliteReadOnlyDSN(path string) string {
 	normalized := filepath.ToSlash(path)
-	// filepath.ToSlash only recognizes the current platform's separator. Keep
-	// Windows paths valid when this helper is exercised by platform-neutral
-	// tests, and ensure a drive letter is parsed as a path rather than a URI
-	// authority (file:///C:/...), which would otherwise look like a port.
+	// filepath.ToSlash only recognizes the current platform's separator, so
+	// normalize a synthetic or native Windows drive path explicitly as well.
 	if len(path) >= 3 && path[1] == ':' && (path[2] == '\\' || path[2] == '/') {
-		normalized = "/" + strings.ReplaceAll(path, "\\", "/")
+		normalized = strings.ReplaceAll(path, "\\", "/")
 	}
-	return &url.URL{Scheme: "file", Path: normalized}
+	escapedPath := (&url.URL{Path: normalized}).EscapedPath()
+	query := url.Values{}
+	query.Set("mode", "ro")
+	query.Add("_pragma", "query_only(1)")
+	query.Add("_pragma", "busy_timeout(5000)")
+	// ncruces/go-sqlite3 expects the same form it uses in its own portable
+	// tests: file: + filepath.ToSlash(path). In particular, file:///C:/...
+	// reaches its Windows VFS as /C:/..., which CreateFile rejects.
+	return "file:" + escapedPath + "?" + query.Encode()
 }
 
 func discoverLegacy(ctx context.Context, root domain.DetectedRoot, kind string, emit func(domain.SessionReference) error) error {
